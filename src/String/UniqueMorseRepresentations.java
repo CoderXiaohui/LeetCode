@@ -35,7 +35,13 @@ import java.util.Set;
  * 每个单词 words[i]只包含小写字母。
  */
 public class UniqueMorseRepresentations {
-    public int uniqueMorseRepresentations(String[] words) {
+    public static void main(String[] args) {
+        String[] strArray = new String[]{"asdv","ccc"};
+        System.out.println(uniqueMorseRepresentations(strArray));
+    }
+
+
+    public static int uniqueMorseRepresentations(String[] words) {
         String[] morseCode =  {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         Set<String> test = new HashSet<>();
         for(String str:words){
@@ -47,7 +53,6 @@ public class UniqueMorseRepresentations {
         }
         return test.size();
     }
-
 
     /**
      * a的ASCII码在十进制中表示为97
