@@ -1,5 +1,8 @@
 package penting;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Auther: Dxh
  * @Date: 2018/12/7 21:48
@@ -48,8 +51,55 @@ package penting;
  * 解释: M = 1000, CM = 900, XC = 90, IV = 4.
  */
 public class RomanToInt {
+    public static void main(String[] args) {
+        System.out.println(romanToInt("LVIII"));
+    }
 
     public  static int romanToInt(String s) {
-       return 0;
+        int res = 0 ;
+        Map<Character,Integer> map = new HashMap<>();
+        map.put('I',1);
+        map.put('V',5);
+        map.put('X',10);
+        map.put('L',50);
+        map.put('C',100);
+        map.put('D',500);
+        map.put('M',1000);
+        char[] c = s.toCharArray();
+        for(int i=0;i<c.length;i++){
+            if (i==c.length-1){
+                res=res+map.get(c[i]);
+                break;
+            }
+            if (map.get(c[i])<map.get(c[i+1])){
+                res=res-map.get(c[i]);
+                continue;
+            }
+            res=res+map.get(c[i]);
+        }
+       return res;
     }
+
+    //方法2.
+    public int romanToInt2(String s) {
+        Map<Character, Integer> romanMap=new HashMap<>();
+        romanMap.put('I',1);
+        romanMap.put('V',5);
+        romanMap.put('X',10);
+        romanMap.put('L',50);
+        romanMap.put('C',100);
+        romanMap.put('D',500);
+        romanMap.put('M',1000);
+        int res=0;
+        char[] chars=s.toCharArray();
+        for(int i=0;i<chars.length;i++){
+            res+=romanMap.get(chars[i]);
+            if(i>0&&romanMap.get(chars[i-1])<romanMap.get(chars[i])){
+                res-=romanMap.get(chars[i-1])*2;
+            }
+        }
+        return res;
+    }
+
+
 }
